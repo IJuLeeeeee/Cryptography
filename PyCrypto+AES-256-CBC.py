@@ -22,7 +22,7 @@ def encrypt(data, key):
 def decrypt(data, key):
 	#decode
     cryptor = AES.new(key, AES.MODE_CBC, _IV)
-    return cryptor.decrypt(data)
+    return cryptor.decrypt(unpad(data))
 
 
 
