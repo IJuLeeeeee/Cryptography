@@ -21,7 +21,7 @@ def encrypt(data, key):
 # decrypt data
 def decrypt(data, key):
 	cryptor = AES.new(key, AES.MODE_ECB)
-	return cryptor.decrypto(data)
+	return cryptor.decrypto(unpad(data))
  
 # load 512MB file
 origin_file = open('origin_file.txt', 'r')

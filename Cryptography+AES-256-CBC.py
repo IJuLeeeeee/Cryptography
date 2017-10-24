@@ -12,6 +12,13 @@ def padding_data(data):
 	padded_data += padder.finalize()
 	return padded_data
 
+def unpad(data):
+	unpadder = padding.PKCS7(128).unpadder()
+	unpadded_data = unpadder.update(data)
+	unpadded_data += unpadder.finalize()
+	return unpadded_data
+
+
 def encrypt(data,key,iv):
 	cipher = Cipher(algorithms.AES(key), modes.CBC(iv), backend=backend)
 	encryptor = cipher.encryptor()
@@ -22,7 +29,9 @@ def encrypt(data,key,iv):
 def decrypt(data,key,iv):
 	cipher = Cipher(algorithms.AES(key), modes.CBC(iv), backend=backend)
 	decryptor = cipher.decryptor()
-	decryptor.update(data) + decryptor.finalize()
+	decode_data = decryptor.update(data) + decryptor.finalize()
+	decode_data = unpad(decode_data)
+	return decode_data
 
 
 
