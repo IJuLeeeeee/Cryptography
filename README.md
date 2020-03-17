@@ -1,2 +1,2 @@
 # Cryptography
-read report.pdf first
+please read report.pdf
